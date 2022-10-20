@@ -1,0 +1,122 @@
+body{
+    background-color: black;
+    display: flex;
+    padding: 5px;
+    margin: auto;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+
+    #main{
+      height: 95%;
+      width: 95%;
+      border: 3px solid #ffe81f;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      flex-flow: column nowrap;
+
+    }
+
+        #header{
+            display: flex;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 200%;
+            font-weight: bolder;
+            color: #ffe81f;
+            align-self: center;
+            justify-self: center;
+        }
+
+
+        #user-section{
+            padding-bottom: 50px;
+            display: flex;
+            width: auto;
+            color: #ffe81f;
+            flex-flow: column nowrap;
+            align-items: center;
+
+        }
+
+            p{
+                margin: 3px;
+                padding: 3px;
+                font-size: 26px;
+                text-align: center;
+            }
+
+        #search-links{
+            height: auto;
+            width: auto;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-items: center;
+            align-self: center;
+            gap: 4em;
+
+        }
+
+            button{
+                font-size: larger;
+                width: 120px;
+                height: 40px;
+                align-self: center;
+                border-radius: 15px;
+                border-color: #ffe81f;
+                border-width: 4px;
+                background-color: inherit;
+                color: #ffe81f;
+
+            }
+
+
+#item-link{
+  list-style-type: none;
+}
+.link{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: bolder;
+  color: #ffe81f;
+}
+  
+  #results {
+    display: flex;
+    width: 95%;
+    height: auto;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 20px;
+    padding: 20px;
+    border-color: #ffe81f;
+    background-color: inherit;
+    flex-flow: column nowrap;
+  }
+  
+  .result-card {
+    width: auto;
+    background-color: inherit;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    align-self: center;
+  }
+
+  .name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+  }
+
+  .stars {
+	position: fixed;
+	width: 2px;
+	height: 2px;
+	background-color: #fff;
+	z-index: 2;
+}
