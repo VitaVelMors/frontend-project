@@ -17,27 +17,20 @@ function randomPosition() {
   return [randomX, randomY]
 }
 
-const urls = {
-  base: 'https://swapi.dev/api/',
-  people: 'people/',
-  planets: 'planets/',
-  films: 'films/',
-  species: 'species/',
-  vehicles: 'vehicles/',
-  starships: 'starships/'
-}
+
 function searchBtns(){ 
   $.get(`https://swapi.dev/api/`, (data) => {
     $.each(data, function(key, value){
       $('#search-links').append(
-        $(`<button id = ${value} class='parentBtn'>${key}</button>`).on('click', function (e){
+        $(`<button id = 'searchBtn'class='btn'>${key}</button>`).on('click', function (e){
           $(`#results`).empty()
           $(`#footer`).empty()
           $.get(value, (data) => {
             getData(data);
-             if ($(`#results`) != '' && data.next){
+             if ($(`#results`) != ''){
+              if(data.next){
               $(`#footer`).append(
-                $(`<button class='prevNext'> Next >> </button>`).on('click', function(e){
+                $(`<button id = 'prevNext' class='btn'> Next >> </button>`).on('click', function(e){
                   $(`#results`).empty()
                   $(`#footer`).empty()
                   $.get(data.next, (data) =>{
@@ -46,6 +39,7 @@ function searchBtns(){
                   })
                 })
               )
+              }
             }
           })
         })
@@ -57,11 +51,11 @@ searchBtns()
 
 function getData(data){
   if (data.results){
+    $(`#results`).empty()
+    $(`#footer`).empty()
     $.each(data.results, function(index, value){
       $(`#results`).append(
-        $(`<button id = '${value.name || value.title}' class = 'childBtn'>${value.name || value.title}</button>`).on('click', function (e){
-          $(`#results`).empty()
-          $(`#footer`).empty()
+        $(`<button id = 'childBtn' class = 'btn'>${value.name || value.title}</button>`).on('click', function (e){
           $(`#results`).append(
             $(`<h2 class='header'>${value.name || value.title}</h2>`))
             $.each(value, function(key, value){
@@ -76,6 +70,20 @@ function getData(data){
     })
   }
 }
+
+
+
+
+
+// const urls = {
+//   base: 'https://swapi.dev/api/',
+//   people: 'people/',
+//   planets: 'planets/',
+//   films: 'films/',
+//   species: 'species/',
+//   vehicles: 'vehicles/',
+//   starships: 'starships/'
+// }
 
 // function nextData(){
   

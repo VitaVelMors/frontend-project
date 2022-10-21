@@ -17,6 +17,71 @@ body{
     z-index: 2;
   }
 
+  .btn{
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    height: auto;
+    align-self: center;
+    border: #ffe81f solid 0.125em;
+    color: #ffe81f;
+    border-radius: 0.5em;
+    padding: 0.25em 1em;
+
+    text-shadow: 0 0 0.125em hsl(0 0 100% / 0.5),
+    0 0 0.45em #ffe81f;
+
+    box-shadow: inset 0 0 0.5em 0 #ffe81f,
+    0 0 0.5em 0 #ffe81f;
+
+    position: relative;
+
+    transition: background-color 100ms linear;
+
+  }
+
+  .btn::before{
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    background-color: #ffe81f;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: perspective(2.5em) rotateX(40deg) scale(1, 0.30);
+    filter: blur(2em);
+    opacity: 0.7;
+  }
+
+  .btn::after{
+    pointer-events: none;
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+    transition: color 100ms linear;
+  }
+
+  .btn:hover,
+  .btn:focus{
+    color: #0077ff;
+    border: #0077ff solid 0.125em;
+    box-shadow: 0 0 1em 0.5em #0077ff;
+  }
+  
+  .btn:hover:focus::before{
+    opacity: 1;
+  }
+  .btn:hover:focus::after{
+    opacity: 1;
+  }
+
   #main{
     height: auto;
     width: 95vw;
@@ -26,8 +91,6 @@ body{
     align-items: center;
     justify-items: center;
     flex-flow: column nowrap;
-
-
   }
 
       .header{
@@ -56,6 +119,8 @@ body{
           font-size: 26px;
           text-align: center;
         }
+      
+
 
         #search-links{
           height: auto;
@@ -69,18 +134,9 @@ body{
           gap: 4em;
         }
 
-          .parentBtn{
+          #searchBtn{
             font-size: 1.25em;
-            display: inline-block;
-            cursor: pointer;
             width: 8em;
-            height: auto;
-            align-self: center;
-            border: #ffe81f solid 0.125em;
-            border-radius: 0.5em;
-            padding: 0.25em 1em;
-            background-color: inherit;
-            color: #ffe81f;
           }
   
         #results {
@@ -95,19 +151,9 @@ body{
           padding: 2em;
         }
 
-          .childBtn{
+          #childBtn{
             font-size: 2em;
-            display: inline-block;
             width: 15em;
-            cursor: pointer;
-            text-decoration: none;
-            align-self: center;
-            border: #ffe81f solid 0.125em;
-            border-radius: 0.5em;
-            padding: 0.25em 1em;
-            background-color: inherit;
-            color: #ffe81f;
-
           }
       
           #link-list{
@@ -130,19 +176,12 @@ body{
         color: #ffe81f;
         align-self: center;
         justify-self: center;
+        flex-flow: row nowrap;
+        padding-bottom: 2em;
       }
 
-      .prevNext{
+      #prevNext{
         font-size: 2em;
-            display: inline-block;
-            width: 15em;
-            cursor: pointer;
-            text-decoration: none;
-            align-self: center;
-            border: #ffe81f solid 0.125em;
-            border-radius: 0.5em;
-            padding: 0.25em 1em;
-            background-color: inherit;
-            color: #ffe81f;
+        width: 15em;
       }
 
