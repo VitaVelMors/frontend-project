@@ -17,33 +17,86 @@ function randomPosition() {
   return [randomX, randomY]
 }
 
-
-function searchBtns(){
+const urls = {
+  base: 'https://swapi.dev/api/',
+  people: 'people/',
+  planets: 'planets/',
+  films: 'films/',
+  species: 'species/',
+  vehicles: 'vehicles/',
+  starships: 'starships/'
+}
+function searchBtns(){ 
   $.get(`https://swapi.dev/api/`, (data) => {
     $.each(data, function(key, value){
       $('#search-links').append(
         $(`<button id = ${value} class='parentBtn'>${key}</button>`).on('click', function (e){
-          $('#results').empty()
+          $(`#results`).empty()
+          $(`#footer`).empty()
           $.get(value, (data) => {
-            if (data.results){
-              $.each(data.results, function(index, value){
-                $('#results').append(
-                  $(`<span class = "result-card"></span>`).append(
-                    $('<ul id = "link-list"></ul>').append(
-                      $(`<li><a href = "${value.url}" class = "name">${value.name || value.title}</a></li>`)
-                    )
-                  )
-                );
-              });
+            getData(data);
+             if ($(`#results`) != '' && data.next){
+              $(`#footer`).append(
+                $(`<button class='prevNext'> Next >> </button>`).on('click', function(e){
+                  $(`#results`).empty()
+                  $(`#footer`).empty()
+                  $.get(data.next, (data) =>{
+                    console.log(data)    
+                    getData(data);
+                  })
+                })
+              )
             }
           })
         })
       )
-    });
-  });
+    })
+  })   
 }
 searchBtns()
 
+function getData(data){
+  if (data.results){
+    $.each(data.results, function(index, value){
+      $(`#results`).append(
+        $(`<button id = '${value.name || value.title}' class = 'childBtn'>${value.name || value.title}</button>`).on('click', function (e){
+          $(`#results`).empty()
+          $(`#footer`).empty()
+          $(`#results`).append(
+            $(`<h2 class='header'>${value.name || value.title}</h2>`))
+            $.each(value, function(key, value){
+             $(`#results`).append(
+              $(`<ul id = "link-list"></ul>`).append(
+                $(`<li class = "key">${key}: ${value}</li>`)
+              )
+            )
+          })
+        })
+      )
+    })
+  }
+}
+
+// function nextData(){
+  
+
+//     if(data.previous){
+//     $(`#footer`).append(
+//       $(`<button class='prevNext'> << Previous </button>`).on('click', function(e){
+//         $(`#results`).empty()
+//         $(`#footer`).empty()
+//         $.get(data.previous, (data) =>{
+//           console.log(data)    
+//           getData(data);
+//         })
+//       })
+//     )
+//     }
+//   }
+
+
+                  // <span class = "result-card"></span>`).append(
+                  //   
     
   // $('#submit').on('click', function(e) {
   //   getData()
